@@ -24,10 +24,10 @@ Happy networking!!! ( :smiling_face_with_three_hearts: :star_struck: :hugs: )
 ## Tools stack:
 
 <p>
-   <img style="margin:2% 1%" width="5%" src="./assets/sequelize.svg" />
-   <img style="margin:2% 1%" width="5%" src="./assets/apollo-graphql-compact.svg" />
-   <img style="margin:2% 1%" width="5%" src="./assets/react.svg" />
-   <img style="margin:2% 1%" width="5%" src="./assets/graphql.svg" />
+   <img width="10%" hspace="2%" src="./assets/sequelize.svg" />
+   <img width="10%" hspace="2%" src="./assets/apollo-graphql-compact.svg" />
+   <img width="10%" hspace="2%" src="./assets/react.svg" />
+   <img width="10%" hspace="2%" src="./assets/graphql.svg" />
 </p>
 
 Database utility:
