@@ -14,9 +14,9 @@ const constructUserResponse = (code, success, message) => {
 };
 
 const generateJWT = (payload) => {
-  return jwt.sign(payload, process.env.jwt_secret, {
-    expiresIn: "5 days", // For development purpose
-    algorithm: "HS256",
+  return jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRESIN,
+    algorithm: process.env.JWT_ALGORITHM,
   });
 };
 
@@ -65,7 +65,10 @@ module.exports = {
             "password and confirm password must match"
           ),
         };
-      const avatarUrl = gravatar.url(email, { protocol: "https", s: "100" });
+      const avatarUrl = gravatar.url(email, {
+        protocol: process.env.GRAVATAR_PROTOCOL,
+        s: process.env.GRAVATAR_SIZE,
+      });
       let newUser = {
         id: nanoid(),
         firstName,
@@ -74,8 +77,10 @@ module.exports = {
         avatarUrl,
       };
       try {
-        const salt = await bcrypt.genSalt(10);
-        const hashPassword = await bcrypt.hash(password, salt);
+        const hashPassword = await bcrypt.hash(
+          password,
+          Number(process.env.BCRYPT_SALT_ROUNDS)
+        );
         newUser = await User.create({ ...newUser, password: hashPassword });
         return {
           ...constructUserResponse(200, true, "User created successfully"),
@@ -83,7 +88,7 @@ module.exports = {
           data: newUser,
         };
       } catch (err) {
-        if (err.original.code == "ER_DUP_ENTRY")
+        if (err.original && err.original.code == "ER_DUP_ENTRY")
           return {
             ...constructUserResponse(400, false, "User already exist"),
           };
