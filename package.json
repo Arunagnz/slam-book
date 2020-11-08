@@ -17,6 +17,10 @@
     "await"
   ],
   "author": "Arunagirinathan Rajan <arunagnz@gmail.com> (arunagnz.github.io)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arunagnz/slam-book"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/arunagnz/slam-book/issues"
@@ -29,6 +33,7 @@
     "dotenv": "^8.2.0",
     "graphql": "^15.4.0",
     "graphql-constraint-directive": "^2.1.0",
+    "graphql-tools": "^7.0.1",
     "gravatar": "^1.8.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",

@@ -3,7 +3,9 @@ const bcrypt = require("bcrypt");
 const gravatar = require("gravatar");
 const jwt = require("jsonwebtoken");
 
-const User = require("../../models/User");
+const {
+  models: { user: User },
+} = require("../../sequelize");
 
 const constructUserResponse = (code, success, message) => {
   return {
@@ -24,11 +26,7 @@ module.exports = {
   Query: {
     async getUser(_, { userId }) {
       try {
-        const data = await User.findOne({
-          where: {
-            id: userId,
-          },
-        });
+        const data = await User.findByPk(userId);
         if (data)
           return {
             ...constructUserResponse(200, true, "User retrieved successfully"),

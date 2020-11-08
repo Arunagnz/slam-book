@@ -1,7 +1,6 @@
 const { DataTypes } = require("sequelize");
-const db = require("../config/database");
 
-module.exports = db.define("User", {
+module.exports = (db) => db.define("user", {
   id: {
     type: DataTypes.STRING,
     allowNull: false,
