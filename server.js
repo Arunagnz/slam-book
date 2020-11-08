@@ -1,20 +1,9 @@
-const { ApolloServer, makeExecutableSchema } = require("apollo-server");
-const {
-  constraintDirective,
-  constraintDirectiveTypeDefs,
-} = require("graphql-constraint-directive");
+const { ApolloServer } = require("apollo-server");
 
 require("colors");
 require("dotenv").config();
 
-const typeDefs = require("./graphql/typeDefs");
-const resolvers = require("./graphql/resolvers");
-
-const schema = makeExecutableSchema({
-  typeDefs: [constraintDirectiveTypeDefs, typeDefs],
-  resolvers,
-  schemaTransforms: [constraintDirective()],
-});
+const schema = require("./graphql/schema")
 
 const port = process.env.PORT || 5000;
 
@@ -23,5 +12,5 @@ const server = new ApolloServer({
 });
 
 server.listen(port).then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`.magenta);
+  console.log(`🚀  Server starts listening at ${url}`.magenta);
 });

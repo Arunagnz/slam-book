@@ -1,0 +1,60 @@
+# Write your query or mutation here
+query getUser {
+  getUser(userId: "") {
+    code
+    success
+    message
+    token
+    data {
+      id
+      firstName
+      lastName
+      email
+      avatarUrl
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation login {
+  login(email: "", password: "") {
+    code
+    success
+    message
+    token
+    data {
+      id
+      firstName
+      lastName
+      email
+      avatarUrl
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation register {
+  register(registerInput: {
+    firstName: ""
+    lastName: ""
+    email: ""
+    password: ""
+    confirmPassword: ""
+  }) {
+    code
+    success
+    message
+    token
+    data {
+      id
+      firstName
+      lastName
+      email
+      avatarUrl
+      createdAt
+      updatedAt
+    }
+  }
+}
