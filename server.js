@@ -22,6 +22,7 @@ const port = process.env.PORT || 5000;
 
 const server = new ApolloServer({
   schema,
+  context: ({ req, res }) => ({ req, res }),
 });
 
 server.listen(port).then(({ url }) => {

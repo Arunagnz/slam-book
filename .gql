@@ -36,13 +36,15 @@ mutation login {
 }
 
 mutation register {
-  register(registerInput: {
-    firstName: ""
-    lastName: ""
-    email: ""
-    password: ""
-    confirmPassword: ""
-  }) {
+  register(
+    registerInput: {
+      firstName: ""
+      lastName: ""
+      email: ""
+      password: ""
+      confirmPassword: ""
+    }
+  ) {
     code
     success
     message
@@ -53,6 +55,81 @@ mutation register {
       lastName
       email
       avatarUrl
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+query getAllPost {
+  getAllPost {
+    code
+    success
+    message
+    data {
+      id
+      body
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+query getPost {
+  getPost(postId: "") {
+    code
+    success
+    message
+    data {
+      id
+      body
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation createPost {
+  createPost(postBody: "") {
+    code
+    success
+    message
+    data {
+      id
+      body
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation updatePost {
+  updatePost(postId: "", postBody: "") {
+    code
+    success
+    message
+    data {
+      id
+      body
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation deletePost {
+  deletePost(postId: "") {
+    code
+    success
+    message
+    data {
+      id
+      body
+      userId
       createdAt
       updatedAt
     }

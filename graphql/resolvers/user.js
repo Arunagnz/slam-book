@@ -6,14 +6,7 @@ const jwt = require("jsonwebtoken");
 const {
   models: { user: User },
 } = require("../../sequelize");
-
-const constructUserResponse = (code, success, message) => {
-  return {
-    code,
-    success,
-    message,
-  };
-};
+const { constructResponse } = require("../../utils/responseUtil");
 
 const generateJWT = (payload) => {
   return jwt.sign(payload, process.env.JWT_SECRET, {
@@ -29,13 +22,13 @@ module.exports = {
         const data = await User.findByPk(userId);
         if (data)
           return {
-            ...constructUserResponse(200, true, "User retrieved successfully"),
+            ...constructResponse(200, true, "User retrieved successfully"),
             token: "12334",
             data,
           };
         else
           return {
-            ...constructUserResponse(404, false, "User not found"),
+            ...constructResponse(404, false, "User not found"),
           };
       } catch (err) {
         throw new Error(err);
@@ -57,7 +50,7 @@ module.exports = {
     ) {
       if (password !== confirmPassword)
         return {
-          ...constructUserResponse(
+          ...constructResponse(
             400,
             false,
             "password and confirm password must match"
@@ -81,14 +74,14 @@ module.exports = {
         );
         newUser = await User.create({ ...newUser, password: hashPassword });
         return {
-          ...constructUserResponse(200, true, "User created successfully"),
+          ...constructResponse(200, true, "User created successfully"),
           token: generateJWT(newUser.dataValues),
           data: newUser,
         };
       } catch (err) {
         if (err.original && err.original.code == "ER_DUP_ENTRY")
           return {
-            ...constructUserResponse(400, false, "User already exist"),
+            ...constructResponse(400, false, "User already exist"),
           };
         throw new Error(err);
       }
@@ -102,17 +95,17 @@ module.exports = {
         });
         if (!user)
           return {
-            ...constructUserResponse(404, false, "User not found"),
+            ...constructResponse(404, false, "User not found"),
           };
         if (await bcrypt.compare(password, user.password)) {
           return {
-            ...constructUserResponse(200, true, "Login successful"),
+            ...constructResponse(200, true, "Login successful"),
             token: generateJWT(user.dataValues),
             data: user,
           };
         } else {
           return {
-            ...constructUserResponse(400, false, "Invalid credentials"),
+            ...constructResponse(400, false, "Invalid credentials"),
           };
         }
       } catch (err) {
