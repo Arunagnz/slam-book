@@ -20,6 +20,7 @@ const db = new Sequelize(MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD, {
 const modelDefiners = [
   require("./models/user.model"),
   require("./models/post.model"),
+  require("./models/comment.model"),
 ];
 
 // We define all models according to their files.

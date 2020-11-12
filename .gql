@@ -135,3 +135,86 @@ mutation deletePost {
     }
   }
 }
+
+query getComment {
+  getComment(commentId: "") {
+    code
+    success
+    message
+    data {
+      id
+      body
+      postId
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+query getAllComment {
+  getAllComment(postId: "") {
+    code
+    success
+    message
+    data {
+      id
+      body
+      postId
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation createComment {
+  createComment(postId: "", commentBody: "") {
+    code
+    success
+    message
+    data {
+      id
+      body
+      postId
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation updateComment {
+  updateComment(
+    commentId: ""
+    commentBody: ""
+  ) {
+    code
+    success
+    message
+    data {
+      id
+      body
+      postId
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation deleteComment {
+  deleteComment(commentId: "") {
+    code
+    success
+    message
+    data {
+      id
+      body
+      postId
+      userId
+      createdAt
+      updatedAt
+    }
+  }
+}
